@@ -25,9 +25,11 @@ pipeline {
 
     stages {
         stage('appversion and environment') {
-            script {
-                app_version = params.image_version
-                env_name = params.env.name
+            steps {
+                script {
+                    app_version = params.image_version
+                    env_name = params.env.name
+                }
             }
         }
     }
