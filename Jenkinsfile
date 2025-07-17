@@ -38,7 +38,7 @@ pipeline {
                 script {
                     withAWS(region: 'us-east-1', credentials: 'aws-auth') {
                         sh """
-                            aws eks update-kubeconfig --region $region --name expense-${environment}-eks
+                            aws eks update-kubeconfig --region $region --name expense-${params.env_name}-eks
                             kubectl get nodes
                             echo ${params.image_version}
                         """
