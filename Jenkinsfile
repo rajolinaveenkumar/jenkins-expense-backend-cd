@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     app_version = params.image_version
-                    env_name = params.env.name
+                    env_name = params.env_name
                 }
             }
         }
