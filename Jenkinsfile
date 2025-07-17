@@ -41,6 +41,9 @@ pipeline {
                             aws eks update-kubeconfig --region $region --name expense-${params.env_name}-eks
                             kubectl get nodes
                             echo ${params.image_version}
+                            cd helm-backend
+                            sed -i "s/image_version/${params.image_version}/g" values-${params.env_name}.yaml
+                            helm upgrade --install ${component}-chart -n ${project} -f  values-${params.env_name}.yaml .
                         """
                     }
                 }

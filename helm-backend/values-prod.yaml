@@ -1,0 +1,7 @@
+configmap:
+    DB_HOST: "mysql-dev.naveenrajoli.site" 
+deployment:
+  imageversion: 343430925817.dkr.ecr.us-east-1.amazonaws.com/expense-dev/backend
+  imageversion: image_version
+
+    
