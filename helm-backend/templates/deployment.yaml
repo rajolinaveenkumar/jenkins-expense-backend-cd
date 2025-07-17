@@ -24,7 +24,7 @@ spec:
         topology.kubernetes.io/zone: us-east-1a
       containers:
       - name: backend
-        image: naveenrajoli/2025backend:{{ .Values.deployment.imageversion }}
+        image: "{{ .Values.deployment.image_url }}:{{ .Values.deployment.imageversion }}"
         ports:
         - containerPort: 8080
         resources:
