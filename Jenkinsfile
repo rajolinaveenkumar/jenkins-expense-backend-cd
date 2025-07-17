@@ -5,14 +5,16 @@ pipeline {
 
     environment {
         poroject = 'expense'
-        environmet = 'dev'
         component = 'backend'
+        acc_id = '343430925817'
+        region = 'us-east-1'
+        env_name = ''
         app_version = ''
-        acc_id = 343430925817
     }
 
     parameters {
-        booleanParam(name: 'deploy', defaultValue: false, description: 'Select to deploy or not')
+        string(name: "image_version", defaultValue: "", description: "please eneter the image version")
+        choice(name: 'env_name', choices: ['qa', 'dev', 'prod'], description: 'please select environment')
     }
 
     options {
@@ -22,16 +24,27 @@ pipeline {
     }
 
     stages {
-
-        stage('Read app version') {
-            steps {
-                script {
-                    def packageJson = readJOSON file: 'scripts/package.json'
-                    app_version = packageJson.version
-                    echo "app Version: ${app_version}"
-                }
-
+        stage('appversion and environment') {
+            script {
+                app_version = params.image_version
+                env_name = params.env.name
             }
         }
     }
+
+    
+
+    post {
+        always{
+            echo 'this will run always'
+            deleteDir()
+        }
+        success{
+            echo 'this will run on success'
+        }
+        failure{
+            echo 'this will run at failure'
+        }
+    }
+
 }

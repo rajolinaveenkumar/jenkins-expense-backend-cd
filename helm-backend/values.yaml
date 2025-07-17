@@ -1,0 +1,6 @@
+configmap:
+    DB_HOST: "mysql-svc" 
+deployment:
+  imageversion: image_version
+
+    
